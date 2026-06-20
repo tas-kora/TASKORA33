@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>
+    Taskora | Worker Dashboard
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+  <!-- =========================
+       SIDEBAR
+  ========================= -->
+
+  <aside class="sidebar">
+
+    <div>
+
+      <!-- BRAND -->
+
+      <div class="brand">
+
+        <div class="brand-icon">
+
+          T
+
+        </div>
+
+        <div>
+
+          <h2>
+            Taskora
+          </h2>
+
+          <span>
+            Remote Worker Platform
+          </span>
+
+        </div>
+
+      </div>
+
+      <!-- MENU -->
+
+      <ul class="sidebar-menu">
+
+        <li onclick="showSection('dashboardSection')">
+          Dashboard
+        </li>
+
+        <li onclick="showSection('tasksSection')">
+          Available Tasks
+        </li>
+
+        <li onclick="showSection('historySection')">
+          Earnings History
+        </li>
+
+        <li onclick="showSection('withdrawSection')">
+          Withdraw Funds
+        </li>
+
+        <li onclick="showSection('notificationSection')">
+          Notifications
+        </li>
+
+      </ul>
+
+    </div>
+
+    <!-- LOGOUT -->
+
+    <button
+      id="logoutBtn"
+      class="logout-btn"
+    >
+
+      Logout
+
+    </button>
+
+  </aside>
+
+  <!-- =========================
+       MAIN PANEL
+  ========================= -->
+
+  <main class="main-panel">
+
+    <!-- =========================
+         TOPBAR
+    ========================= -->
+
+    <div class="topbar">
+
+      <div>
+
+        <h1>
+        Dashboard
+        </h1>
+
+        <p>
+          Monitor tasks, earnings and approvals
+        </p>
+
+      </div>
+
+      <div
+        style="
+          display:flex;
+          align-items:center;
+        "
+      >
+
+        <div class="notification-bell">
+
+          🔔
+
+          <span id="notificationCount">
+            0
+          </span>
+
+        </div>
+
+        <div class="admin-avatar">
+
+          U
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- =========================
+         DASHBOARD SECTION
+    ========================= -->
+
+    <section
+      id="dashboardSection"
+      class="page-section"
+    >
+
+      <!-- ANALYTICS -->
+
+      <div class="analytics-grid">
+
+        <!-- BALANCE -->
+
+        <div class="analytics-card">
+
+          <span>
+            Current Balance
+          </span>
+
+          <h1 id="userBalance">
+            $0
+          </h1>
+
+        </div>
+
+        <!-- COMPLETED -->
+
+        <div class="analytics-card">
+
+          <span>
+            Completed Tasks
+          </span>
+
+          <h1 id="completedTasks">
+            0
+          </h1>
+
+        </div>
+
+        <!-- PENDING -->
+
+        <div class="analytics-card">
+
+          <span>
+            Pending Reviews
+          </span>
+
+          <h1 id="pendingReviews">
+            0
+          </h1>
+
+        </div>
+
+        <!-- TOTAL -->
+
+        <div class="analytics-card">
+
+          <span>
+            Total Earnings
+          </span>
+
+          <h1 id="totalEarnings">
+            $0
+          </h1>
+
+        </div>
+
+      </div>
+
+      <!-- STATUS CARD -->
+
+      <div
+        class="content-card"
+        style="margin-top:35px;"
+      >
+
+        <div class="card-header">
+
+          <h2>
+            Verification & Payment Status
+          </h2>
+
+        </div>
+
+        <div id="verificationList"></div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         TASKS SECTION
+    ========================= -->
+
+    <section
+      id="tasksSection"
+      class="page-section"
+      style="display:none;"
+    >
+
+      <div class="card-header">
+
+        <h2>
+          Available Tasks
+        </h2>
+
+      </div>
+
+      <div
+        id="taskList"
+        class="task-list"
+      ></div>
+
+    </section>
+
+    <!-- =========================
+         HISTORY SECTION
+    ========================= -->
+
+    <section
+      id="historySection"
+      class="page-section"
+      style="display:none;"
+    >
+
+      <div class="card-header">
+
+        <h2>
+          Earnings History
+        </h2>
+
+      </div>
+
+      <div id="earningsHistory"></div>
+
+    </section>
+
+    <!-- =========================
+         WITHDRAW SECTION
+    ========================= -->
+
+    <section
+      id="withdrawSection"
+      class="page-section"
+      style="display:none;"
+    >
+
+      <div class="content-card">
+
+        <div class="card-header">
+
+          <h2>
+            Request Withdrawal
+          </h2>
+
+        </div>
+
+        <input
+          type="number"
+          id="withdrawAmount"
+          placeholder="Withdrawal Amount"
+        />
+
+        <select id="withdrawMethod">
+
+          <option value="PayPal">
+            PayPal
+          </option>
+
+          <option value="Crypto">
+            Crypto Wallet
+          </option>
+
+          <option value="Bank">
+            Bank Transfer
+          </option>
+
+        </select>
+
+        <input
+          type="text"
+          id="withdrawDetails"
+          placeholder="Payment Details"
+        />
+
+        <button
+          id="withdrawBtn"
+          class="primary-btn"
+        >
+
+          Submit Withdrawal
+
+        </button>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         NOTIFICATIONS
+    ========================= -->
+
+    <section
+      id="notificationSection"
+      class="page-section"
+      style="display:none;"
+    >
+
+      <div class="card-header">
+
+        <h2>
+          Notifications
+        </h2>
+
+      </div>
+
+      <div id="notificationList"></div>
+
+    </section>
+
+  </main>
+
+</div>
+
+<!-- =========================
+     SUBMISSION MODAL
+========================= -->
+
+<div
+  id="submissionModal"
+  class="modal"
+>
+
+  <div class="modal-content">
+
+    <h2
+      style="
+        margin-bottom:25px;
+      "
+    >
+
+      Submit Task Proof
+
+    </h2>
+
+    <textarea
+      id="submissionText"
+      placeholder="
+      Enter your proof or explanation here...
+      "
+    ></textarea>
+
+    <div class="modal-actions">
+
+      <button
+        id="submitTaskBtn"
+      >
+
+        Submit Task
+
+      </button>
+
+      <button
+        id="closeModalBtn"
+      >
+
+        Cancel
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- =========================
+     SCRIPT
+========================= -->
+
+<script
+  type="module"
+  src="script.js"
+></script>
+
+</body>
+</html>

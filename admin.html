@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>
+    Taskora | Admin Dashboard
+  </title>
+
+  <!-- STYLE -->
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  />
+
+  <!-- FONT -->
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+</head>
+
+<body>
+
+<!-- =========================
+     MAIN LAYOUT
+========================= -->
+
+<div class="dashboard-layout">
+
+  <!-- =========================
+       SIDEBAR
+  ========================= -->
+
+  <aside class="sidebar">
+
+    <div>
+
+      <!-- BRAND -->
+
+      <div class="brand">
+
+        <div class="brand-icon">
+
+          T
+
+        </div>
+
+        <div>
+
+          <h2>
+            Taskora
+          </h2>
+
+          <span>
+            Enterprise Admin
+          </span>
+
+        </div>
+
+      </div>
+
+      <!-- MENU -->
+
+      <ul class="sidebar-menu">
+
+        <li
+          onclick="
+            showAdminSection(
+              'overviewSection'
+            )
+          "
+        >
+
+          Dashboard Overview
+
+        </li>
+
+        <li
+          onclick="
+            showAdminSection(
+              'tasksSection'
+            )
+          "
+        >
+
+          Manage Tasks
+
+        </li>
+
+        <li
+          onclick="
+            showAdminSection(
+              'submissionsSection'
+            )
+          "
+        >
+
+          Task Verification
+
+        </li>
+
+        <li
+          onclick="
+            showAdminSection(
+              'withdrawalsSection'
+            )
+          "
+        >
+
+          Payment Verification
+
+        </li>
+
+        <li
+          onclick="
+            showAdminSection(
+              'usersSection'
+            )
+          "
+        >
+
+          Create Accounts
+
+        </li>
+
+        <li
+          onclick="
+            showAdminSection(
+              'notificationsSection'
+            )
+          "
+        >
+
+          Notifications
+
+        </li>
+
+      </ul>
+
+    </div>
+
+    <!-- LOGOUT -->
+
+    <button
+      id="logoutBtn"
+      class="logout-btn"
+    >
+
+      Logout
+
+    </button>
+
+  </aside>
+
+  <!-- =========================
+       MAIN PANEL
+  ========================= -->
+
+  <main class="main-panel">
+
+    <!-- =========================
+         TOPBAR
+    ========================= -->
+
+    <div class="topbar">
+
+      <div>
+
+        <h1>
+          Admin Dashboard
+        </h1>
+
+        <p>
+          Manage users, tasks,
+          approvals and payouts
+        </p>
+
+      </div>
+
+      <div
+        style="
+          display:flex;
+          align-items:center;
+          gap:20px;
+        "
+      >
+
+        <div class="notification-bell">
+
+          🔥
+
+        </div>
+
+        <div class="admin-avatar">
+
+          A
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- =========================
+         OVERVIEW SECTION
+    ========================= -->
+
+    <section
+      id="overviewSection"
+      class="admin-section"
+    >
+
+      <!-- ANALYTICS -->
+
+      <div class="analytics-grid">
+
+        <!-- USERS -->
+
+        <div class="analytics-card">
+
+          <span>
+            Total Users
+          </span>
+
+          <h1 id="totalUsers">
+            0
+          </h1>
+
+        </div>
+
+        <!-- TASKS -->
+
+        <div class="analytics-card">
+
+          <span>
+            Active Tasks
+          </span>
+
+          <h1 id="activeTasks">
+            0
+          </h1>
+
+        </div>
+
+        <!-- SUBMISSIONS -->
+
+        <div class="analytics-card">
+
+          <span>
+            Pending Verifications
+          </span>
+
+          <h1 id="pendingSubmissions">
+            0
+          </h1>
+
+        </div>
+
+        <!-- WITHDRAWALS -->
+
+        <div class="analytics-card">
+
+          <span>
+            Pending Payments
+          </span>
+
+          <h1 id="pendingWithdrawals">
+            0
+          </h1>
+
+        </div>
+
+      </div>
+
+      <!-- LIVE STATUS -->
+
+      <div
+        class="content-card"
+        style="
+          margin-top:35px;
+        "
+      >
+
+        <div class="card-header">
+
+          <h2>
+            Platform Status
+          </h2>
+
+        </div>
+
+        <div class="analytics-grid">
+
+          <div class="analytics-card">
+
+            <span>
+              Verification System
+            </span>
+
+            <h1>
+              LIVE
+            </h1>
+
+          </div>
+
+          <div class="analytics-card">
+
+            <span>
+              Payment Gateway
+            </span>
+
+            <h1>
+              ACTIVE
+            </h1>
+
+          </div>
+
+          <div class="analytics-card">
+
+            <span>
+              Realtime Sync
+            </span>
+
+            <h1>
+              ONLINE
+            </h1>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         TASKS SECTION
+    ========================= -->
+
+    <section
+      id="tasksSection"
+      class="admin-section"
+      style="display:none;"
+    >
+
+      <!-- CREATE TASK -->
+
+      <div class="content-card">
+
+        <div class="card-header">
+
+          <h2>
+            Create New Task
+          </h2>
+
+        </div>
+
+        <input
+          type="text"
+          id="taskTitle"
+          placeholder="Task Title"
+        />
+
+        <textarea
+          id="taskDescription"
+          placeholder="Task Description"
+        ></textarea>
+
+        <input
+          type="number"
+          id="taskPrice"
+          placeholder="Reward Amount"
+        />
+
+        <button
+          id="createTaskBtn"
+          class="primary-btn"
+        >
+
+          Create Task
+
+        </button>
+
+      </div>
+
+      <!-- TASK LIST -->
+
+      <div
+        class="content-card"
+        style="
+          margin-top:35px;
+        "
+      >
+
+        <div class="card-header">
+
+          <h2>
+            Existing Tasks
+          </h2>
+
+        </div>
+
+        <div
+          id="adminTaskList"
+          class="task-list"
+        ></div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         SUBMISSIONS SECTION
+    ========================= -->
+
+    <section
+      id="submissionsSection"
+      class="admin-section"
+      style="display:none;"
+    >
+
+      <div class="card-header">
+
+        <h2>
+          Pending Task Verifications
+        </h2>
+
+      </div>
+
+      <div id="submissionList"></div>
+
+    </section>
+
+    <!-- =========================
+         WITHDRAWALS SECTION
+    ========================= -->
+
+    <section
+      id="withdrawalsSection"
+      class="admin-section"
+      style="display:none;"
+    >
+
+      <div class="card-header">
+
+        <h2>
+          Pending Payment Verifications
+        </h2>
+
+      </div>
+
+      <div id="withdrawalList"></div>
+
+    </section>
+
+    <!-- =========================
+         CREATE USERS SECTION
+    ========================= -->
+
+    <section
+      id="usersSection"
+      class="admin-section"
+      style="display:none;"
+    >
+
+      <div class="content-card">
+
+        <div class="card-header">
+
+          <h2>
+            Create Worker Account
+          </h2>
+
+        </div>
+
+        <input
+          type="email"
+          id="newUserEmail"
+          placeholder="Worker Email"
+        />
+
+        <input
+          type="password"
+          id="newUserPassword"
+          placeholder="Worker Password"
+        />
+
+        <button
+          id="createUserBtn"
+          class="primary-btn"
+        >
+
+          Create Account
+
+        </button>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         NOTIFICATIONS SECTION
+    ========================= -->
+
+    <section
+      id="notificationsSection"
+      class="admin-section"
+      style="display:none;"
+    >
+
+      <div class="content-card">
+
+        <div class="card-header">
+
+          <h2>
+            System Notifications
+          </h2>
+
+        </div>
+
+        <div id="adminNotificationList">
+
+          <div class="notification-item">
+
+            <h3>
+              Taskora System Active
+            </h3>
+
+            <p
+              style="
+                color:#9ca3af;
+                margin-top:10px;
+              "
+            >
+
+              Realtime systems are
+              connected and operational.
+
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+<!-- =========================
+     SCRIPT
+========================= -->
+
+<script
+  type="module"
+  src="script.js"
+></script>
+
+</body>
+</html>

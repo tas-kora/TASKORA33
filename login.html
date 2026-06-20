@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>
+    Taskora | Secure Login
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+</head>
+
+<body>
+
+<!-- =========================
+     LOGIN CONTAINER
+========================= -->
+
+<div
+  style="
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+  "
+>
+
+  <!-- CARD -->
+
+  <div
+    class="hero-card"
+    style="
+      width:100%;
+      max-width:500px;
+    "
+  >
+
+    <!-- LOGO -->
+
+    <div
+      style="
+        text-align:center;
+        margin-bottom:40px;
+      "
+    >
+
+      <div
+        style="
+          width:90px;
+          height:90px;
+          margin:auto;
+          border-radius:24px;
+          background:
+          linear-gradient(
+            135deg,
+            #7c3aed,
+            #9333ea
+          );
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          font-size:34px;
+          font-weight:800;
+          margin-bottom:25px;
+        "
+      >
+
+        T
+
+      </div>
+
+      <h1
+        style="
+          font-size:42px;
+          margin-bottom:15px;
+        "
+      >
+
+        Welcome Back
+
+      </h1>
+
+      <p
+        style="
+          color:#9ca3af;
+          line-height:1.8;
+        "
+      >
+
+        Login to access your Taskora
+        worker dashboard and earnings.
+
+      </p>
+
+    </div>
+
+    <!-- FORM -->
+
+    <input
+      type="email"
+      id="email"
+      placeholder="Email Address"
+    />
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Password"
+    />
+
+    <!-- MESSAGE -->
+
+    <p
+      id="message"
+      style="
+        color:#ef4444;
+        margin-bottom:20px;
+      "
+    ></p>
+
+    <!-- LOGIN BUTTON -->
+
+    <button
+      id="loginBtn"
+      class="primary-btn"
+      style="
+        width:100%;
+      "
+    >
+
+      Login To Dashboard
+
+    </button>
+
+    <!-- INFO -->
+
+    <div
+      style="
+        text-align:center;
+        margin-top:35px;
+      "
+    >
+
+      <p
+        style="
+          color:#9ca3af;
+          line-height:1.8;
+        "
+      >
+
+        Access is managed directly
+        by Taskora administration.
+
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- =========================
+     SCRIPT
+========================= -->
+
+<script
+  type="module"
+  src="script.js"
+></script>
+
+</body>
+</html>
